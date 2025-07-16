@@ -30,7 +30,7 @@ MyChat/
 
 ### 后端（FastAPI）
 ```bash
-# 进入项目根目录，激活虚拟环境
+# 进入项目根目录，激活虚拟环境 根据自己环境修改名称
 cd /Users/zhangzhongyuan/PycharmProjects/MyChat
 source .venv/bin/activate
 
