@@ -1,0 +1,12 @@
+# macOS
+.DS_Store
+
+# IntelliJ / PyCharm / WebStorm
+.idea/
+
+# Node / Java / Python 可根据项目类型再加
+node_modules/
+target/
+venv/
+*.log
+
