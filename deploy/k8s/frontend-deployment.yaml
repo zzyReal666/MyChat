@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mychat-frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mychat-frontend
+  template:
+    metadata:
+      labels:
+        app: mychat-frontend
+    spec:
+      containers:
+        - name: frontend
+          image: mychat-frontend:latest
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mychat-frontend
+spec:
+  type: ClusterIP
+  selector:
+    app: mychat-frontend
+  ports:
+    - port: 80
+      targetPort: 80 

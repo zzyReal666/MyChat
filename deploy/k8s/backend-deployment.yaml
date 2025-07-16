@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mychat-backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mychat-backend
+  template:
+    metadata:
+      labels:
+        app: mychat-backend
+    spec:
+      containers:
+        - name: backend
+          image: mychat-backend:latest
+          ports:
+            - containerPort: 8000
+          envFrom:
+            - configMapRef:
+                name: mychat-backend-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mychat-backend
+spec:
+  type: ClusterIP
+  selector:
+    app: mychat-backend
+  ports:
+    - port: 8000
+      targetPort: 8000 

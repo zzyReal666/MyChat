@@ -1,0 +1,11 @@
+fastapi
+uvicorn[standard]
+langchain
+psycopg2-binary
+pymongo
+pydantic
+sqlalchemy
+pymilvus
+python-dotenv
+loguru
+httpx 
