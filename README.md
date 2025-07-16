@@ -7,7 +7,8 @@
 
 ## 界面预览
 
-![MyChat 前端界面预览](docs/screenshot-main.png)
+![MyChat 前端界面预览](doc/image.png)
+
 
 > 示例：RAG 智能对话主界面，左侧为会话与工具栏，右侧为作者信息区，中间为智能对话窗口。
 
