@@ -1,8 +1,10 @@
 """
 Qwen 模型适配器。
 """
+
 from .base import BaseLLM
 from typing import Optional
+
 
 class QwenAdapter(BaseLLM):
     def __init__(self, model_path: str):
@@ -15,4 +17,4 @@ class QwenAdapter(BaseLLM):
         与Qwen模型对话。
         """
         # 伪代码：实际应调用Qwen推理接口
-        return f"[Qwen回复] {prompt}" 
+        return f"[Qwen回复] {prompt}"

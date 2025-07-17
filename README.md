@@ -1,104 +1,153 @@
-# MyChat（学习项目）
+# MyChat
 
-> 本项目为个人学习与实践用途，聚焦于 RAG（检索增强生成）与 Agent 技术的探索与实现。
+> 基于 FastAPI + Langchain 的大模型 RAG/Agent 学习与实践项目
+
+---
 
 ## 项目简介
-本项目基于 FastAPI + Langchain，支持 ChatGLM、Qwen、Llama 等大模型的 RAG 与 Agent 应用，采用前后端分离架构。所有功能均以学习和技术积累为目标，代码结构和实现持续优化中。
+
+MyChat 是一个面向大模型、RAG（检索增强生成）、Agent 应用开发的学习型开源项目。采用前后端分离架构，支持多种主流大模型，便于个人和团队快速实践与二次开发。
+
+---
+
+## 特性
+
+- ✨ 支持多种大模型（ChatGLM、Qwen、Llama 等）
+- 🔍 集成 RAG 检索增强生成能力
+- 🧑‍💻 Agent 智能体开发基础
+- 🗂️ 多知识库适配（FAISS、Milvus 等）
+- 🖥️ 前后端分离（FastAPI + Vue3 + Vite）
+- 🛠️ 丰富的开发脚本与自动化工具
+- 🧪 完善的测试与类型检查
+- 📦 Docker/K8s 支持，易于部署
+- 📚 持续优化与文档完善
+
+---
 
 ## 界面预览
 
 ![MyChat 前端界面预览](doc/image.png)
 
+> 主界面：左侧为会话与工具栏，右侧为作者信息区，中间为智能对话窗口。
 
-> 示例：RAG 智能对话主界面，左侧为会话与工具栏，右侧为作者信息区，中间为智能对话窗口。
+---
 
-## 目录结构
+## 目录结构（详细说明，适合新手）
+
 ```text
 MyChat/
-├── backend/           # 后端 FastAPI 服务，集成 Langchain、模型适配、RAG/Agent 逻辑
-│   ├── app/           # FastAPI 应用主目录
-│   │   ├── api/       # 路由与接口
-│   │   ├── core/      # 配置、启动、依赖注入
-│   │   ├── models/    # 数据模型（Pydantic/ORM）
-│   │   ├── services/  # 业务逻辑、RAG/Agent 实现
-│   │   ├── llms/      # 各类大模型适配（ChatGLM/Qwen/Llama等）
-│   │   ├── db/        # 数据库初始化与连接
-│   │   ├── utils/     # 工具函数
-│   │   └── tasks/     # 异步任务、定时任务
-│   └── tests/         # 后端测试
-├── frontend/          # 前端项目（Vue3 + Vite）
-├── scripts/           # 启动、部署、数据处理等脚本
-├── doc/               # 项目文档与学习记录
-└── README.md          # 项目说明
+├── backend/                  # 后端服务（Python FastAPI）
+│   └── app/
+│       ├── api/              # 路由与接口（如 chat.py、user.py，定义API入口）
+│       ├── core/             # 核心配置与启动（如 main.py 启动入口、config.py 配置）
+│       ├── db/               # 数据库相关（如 init_db.py 初始化脚本）
+│       ├── llms/             # 大模型适配（如 chatglm.py、llama.py、qwen.py，统一接口base.py）
+│       ├── models/           # 数据模型（如 user.py，定义ORM/Pydantic模型）
+│       ├── services/         # 业务逻辑层（如 rag_service.py、user_service.py，处理具体业务）
+│       ├── tasks/            # 异步任务/定时任务（预留，便于扩展）
+│       ├── utils/            # 工具函数（预留，便于扩展）
+│       └── README.md         # 各子模块说明文档
+│   ├── tests/                # 后端测试用例
+│   └── requirements.txt      # 后端依赖
+│
+├── frontend/                 # 前端项目（Vue3 + Vite）
+│   ├── src/
+│   │   ├── api/              # 前端API请求封装
+│   │   ├── components/       # 前端UI组件（如 ChatWindow、ChatInput、ChatMessage、ReferenceList）
+│   │   ├── assets/           # 静态资源
+│   │   ├── App.vue           # 应用主入口
+│   │   └── main.js           # 前端入口文件
+│   ├── public/               # 公共静态资源
+│   ├── package.json          # 前端依赖
+│   └── README.md             # 前端说明文档
+│
+├── deploy/                   # 部署相关（K8s、Docker等）
+│   ├── k8s/                  # Kubernetes 部署文件
+│   └── scripts/              # 部署辅助脚本
+│
+├── scripts/                  # 各类开发、部署、数据处理脚本，便于自动化运维
+│
+├── doc/                      # 项目文档、学习笔记、FAQ等
+│
+├── .github/                  # GitHub Actions、Issue模板、CI/CD配置
+│
+└── README.md                 # 项目说明（入口文档）
 ```
 
-## 功能列表
-
-### 已实现功能
-- [x] FastAPI 后端服务搭建与基础配置
-- [x] 用户注册接口（含唯一性校验）
-- [x] 基于 Langchain 的 RAG 问答服务
-- [x] 支持多种大模型适配（ChatGLM、Qwen、Llama，适配器结构）
-- [x] 本地 FAISS 向量库集成
-- [x] 前后端分离架构，Vue3 + Vite 前端基础页面
-- [x] 数据库（Postgres）初始化与自动建表
-- [x] API 文档自动生成（Swagger/Redoc，支持中文注释）
-- [x] 跨域（CORS）支持
-
-### 计划实现功能
-- [ ] Agent 智能体能力扩展（如多步推理、工具调用）
-- [ ] 用户登录与鉴权（JWT/OAuth2）
-- [ ] 多数据源知识库接入（如 PDF/网页/数据库等）
-- [ ] 向量数据库 Milvus/MongoDB 集成
-- [ ] 前端对话与知识库管理页面
-- [ ] 任务调度与异步处理（Celery/定时任务）
-- [ ] 更丰富的模型推理与微调接口
-- [ ] 部署与运维脚本完善（Docker/K8s）
-
-## 声明
-本项目为**个人学习项目**，所有代码仅供学习与交流，欢迎提出建议与交流心得。
 
 ## 快速开始
-（后续补充安装、运行、开发说明）
 
-## 本地开发启动命令
+### 1. 克隆项目
 
-### 后端（FastAPI）
 ```bash
-# 进入项目根目录，激活虚拟环境 根据自己环境修改名称
-cd /Users/zhangzhongyuan/PycharmProjects/MyChat
-source .venv/bin/activate
-
-# 启动后端服务
-uvicorn app.core.main:app --reload --app-dir backend
+git clone https://github.com/zzyReal666/MyChat.git
+cd MyChat
 ```
 
-### 前端（Vue3 + Vite）
+### 2. 安装依赖
+
 ```bash
-# 进入前端目录
-cd frontend
+# 后端
+cd backend
+pip install -r requirements.txt
 
-# （建议先升级Node到20+，见下方说明）
-
-# 安装依赖（首次或依赖变更时）
+# 前端
+cd ../frontend
 npm install
+```
 
-# 启动前端开发服务器
+### 3. 启动服务
+
+```bash
+# 后端
+cd backend
+uvicorn app.core.main:app --reload
+
+# 前端
+cd ../frontend
 npm run dev
 ```
 
-### Node版本要求
-- 推荐Node.js 20及以上，否则Vite等依赖可能报错。
-- 升级建议：使用nvm（Node Version Manager）管理Node版本。
+### 4. 访问
 
-```bash
-# 安装nvm（如未安装）
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-source ~/.nvm/nvm.sh
+- 前端：http://localhost:5173
+- 后端API：http://localhost:8000/docs
 
-# 安装并切换到Node.js 20
-nvm install 20
-nvm use 20
-node -v  # 确认输出v20.x.x
-```
+---
 
+## 常见问题
+
+- Node.js 推荐 20+ 版本，建议使用 nvm 管理
+- 数据库默认使用 Postgres，需先启动数据库服务
+- 更多问题请见 [FAQ](doc/FAQ.md) 或提交 Issue
+
+---
+
+## 贡献指南
+
+欢迎任何形式的贡献！请阅读 [CONTRIBUTING.md](doc/CONTRIBUTING.md) 了解详细流程。
+
+- Fork 本仓库并新建分支
+- 提交 PR 前请确保通过所有测试和 lint 检查
+- PR 模板见 `.github/pull_request_template.md`
+
+---
+
+## 社区与交流
+
+- 作者：张忠源（Zhang Zhongyuan）
+- 邮箱：zhangzhongyuan@example.com
+- GitHub: [zzyReal666](https://github.com/zzyReal666)
+- 欢迎提 Issue、PR 或加入讨论！
+
+---
+
+## License
+
+[MIT License](LICENSE)
+
+---
+
+## CI/CD 简要说明
+
+本项目已集成企业级 CI/CD 流水线，自动完成测试、构建、部署等流程。详细配置与说明请见 [`.github/workflows/README.md`](.github/workflows/README.md)。

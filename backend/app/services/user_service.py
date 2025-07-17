@@ -3,8 +3,10 @@
 - 负责处理与用户相关的业务逻辑
 - 包含唯一性校验，防止重复注册
 """
+
 from sqlalchemy.orm import Session
 from app.models.user import User, UserCreate
+
 
 def create_user(db: Session, user_in: UserCreate) -> User:
     """
@@ -15,13 +17,15 @@ def create_user(db: Session, user_in: UserCreate) -> User:
     :raises ValueError: 用户名或邮箱已存在
     """
     # 检查用户名或邮箱是否已存在
-    exist = db.query(User).filter(
-        (User.username == user_in.username) | (User.email == user_in.email)
-    ).first()
+    exist = (
+        db.query(User)
+        .filter((User.username == user_in.username) | (User.email == user_in.email))
+        .first()
+    )
     if exist:
         raise ValueError("用户名或邮箱已存在")
     user = User(username=user_in.username, email=user_in.email)
     db.add(user)
     db.commit()
     db.refresh(user)
-    return user 
+    return user

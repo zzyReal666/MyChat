@@ -2,6 +2,7 @@
 数据库初始化模块。
 - 提供Postgres、MongoDB、Milvus的连接初始化方法。
 """
+
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from pymongo import MongoClient
@@ -13,6 +14,7 @@ from app.models.user import Base  # 导入ORM基类
 engine = None
 SessionLocal = None
 
+
 def init_postgres():
     """初始化Postgres数据库连接"""
     global engine, SessionLocal
@@ -20,8 +22,10 @@ def init_postgres():
     SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
     print("[DB] Postgres已连接")
 
+
 # MongoDB连接
 mongo_client = None
+
 
 def init_mongo():
     """初始化MongoDB连接"""
@@ -29,12 +33,15 @@ def init_mongo():
     mongo_client = MongoClient(settings.MONGO_URI)
     print("[DB] MongoDB已连接")
 
+
 # Milvus连接
+
 
 def init_milvus():
     """初始化Milvus连接"""
     connections.connect(host=settings.MILVUS_HOST, port=settings.MILVUS_PORT)
     print("[DB] Milvus已连接")
+
 
 def create_tables():
     """
@@ -45,4 +52,4 @@ def create_tables():
         Base.metadata.create_all(bind=engine)
         print("[DB] 数据库表已创建")
     else:
-        print("[DB] 请先初始化Postgres连接") 
+        print("[DB] 请先初始化Postgres连接")

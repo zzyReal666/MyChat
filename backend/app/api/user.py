@@ -3,6 +3,7 @@
 - 负责接收HTTP请求、参数校验、调用Service层
 - 类似Java的@RestController + @RequestMapping
 """
+
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 from app.models.user import UserCreate, User
@@ -11,12 +12,14 @@ from app.db import init_db
 
 router = APIRouter()
 
+
 def get_db():
     db = init_db.SessionLocal()
     try:
         yield db
     finally:
         db.close()
+
 
 @router.post("/users/", response_model=UserCreate, status_code=status.HTTP_201_CREATED)
 def api_create_user(user_in: UserCreate, db: Session = Depends(get_db)):

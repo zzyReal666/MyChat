@@ -1,8 +1,10 @@
 """
 Llama 模型适配器。
 """
+
 from .base import BaseLLM
 from typing import Optional
+
 
 class LlamaAdapter(BaseLLM):
     def __init__(self, model_path: str):
@@ -15,4 +17,4 @@ class LlamaAdapter(BaseLLM):
         与Llama模型对话。
         """
         # 伪代码：实际应调用Llama推理接口
-        return f"[Llama回复] {prompt}" 
+        return f"[Llama回复] {prompt}"
