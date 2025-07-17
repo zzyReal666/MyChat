@@ -1,8 +1,10 @@
 """
 大模型适配基类，所有模型适配器需继承本类。
 """
+
 from abc import ABC, abstractmethod
 from typing import Optional
+
 
 class BaseLLM(ABC):
     @abstractmethod
@@ -13,4 +15,4 @@ class BaseLLM(ABC):
         :param history: 历史对话
         :return: 模型回复
         """
-        pass 
+        pass

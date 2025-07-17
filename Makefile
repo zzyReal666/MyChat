@@ -1,11 +1,11 @@
 # MyChat Makefile
 # 提供常用的开发命令和CI/CD操作
 
-.PHONY: help install test lint format build deploy clean
+.PHONY: help install test lint format build deploy clean dev docker db-init db-migrate security perf docs version check all
 
 # 默认目标
 help:
-	@echo "MyChat 开发工具	@echo 
+	@echo "MyChat 开发工具
 	@echo可用命令:
 	@echo  install    安装所有依赖"
 	@echo  test       运行所有测试"
@@ -36,7 +36,7 @@ test:
 # 代码质量检查
 lint:
 	@echo 检查Python代码质量..."
-	cd backend && flake8
+	cd backend && flake8-format=default --statistics
 	cd backend && mypy . --ignore-missing-imports
 	cd backend && bandit -r . -f json -o bandit-report.json || true
 	cd backend && safety check --json --output safety-report.json || true
@@ -104,7 +104,7 @@ db-init:
 	cd backend && python -m app.db.init_db
 
 db-migrate:
-	@echo数据库迁移...	@echo 请实现数据库迁移脚本
+	@echo数据库迁移...	@echo "请实现数据库迁移脚本
 # 安全检查
 security:
 	@echo "运行安全扫描..."
