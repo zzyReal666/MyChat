@@ -1,0 +1,13 @@
+[flake8
+max-line-length = 88
+extend-ignore = E23, W503xclude = 
+    .git,
+    __pycache__,
+    .venv,
+    venv,
+    .mypy_cache,
+    .pytest_cache,
+    build,
+    dist
+per-file-ignores =
+    __init__.py:F401    tests/*:S11 
