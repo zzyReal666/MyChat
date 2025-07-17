@@ -1,0 +1,40 @@
+module.exports =[object Object] root: true,
+  env: [object Object]   node: true,
+    browser: true,
+    es2021ue,
+  },
+  extends: [
+eslint:recommended',
+    '@vue/eslint-config-typescript,
+   plugin:vue/vue3-essential,
+   plugin:vue/vue3-strongly-recommended,
+  plugin:vue/vue3-recommended',
+  ],
+  parserOptions: [object Object]
+    ecmaVersion: 2021
+    sourceType: 'module,  },
+  plugins: ['vue],
+  rules:[object Object]no-console': process.env.NODE_ENV ===production' ? 'warn :off',
+no-debugger': process.env.NODE_ENV ===production' ? 'warn' :off',
+ vue/multi-word-component-names:off',
+  vue/no-unused-vars':error',
+vue/no-unused-components': error,
+    'vue/require-default-prop: 'off',
+   vue/require-prop-types:off',
+    vue/no-v-html: 'off',
+vue/component-name-in-template-casing': ['error,PascalCase'],
+    vue/component-definition-name-casing': ['error,PascalCase'],
+  vue/prop-name-casing': ['error',camelCase'],
+    vue/attribute-hyphenation': ['error', 'always'],
+   vue/v-on-event-hyphenation': ['error', 'always'],
+  vue/component-tags-order': ['error',[object Object]   order: ['script', template,style],   }],
+  },
+  overrides: [
+   [object Object]
+      files: **/__tests__/*.{j,t}s?(x)',**/tests/unit/**/*.spec.{j,t}s?(x)'],
+      env: {
+        jest: true,
+      },
+    },
+  ],
+}; 

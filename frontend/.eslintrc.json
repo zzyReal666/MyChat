@@ -1,0 +1,24 @@
+[object Object]
+ root": true,
+  env": [object Object]   node": true,
+   browser": true,
+  es2021ue
+  },
+  extends": [
+eslint:recommended,
+   plugin:vue/vue3-essential,
+   plugin:vue/vue3-strongly-recommended,
+  plugin:vue/vue3-recommended"
+  ],
+parserOptions": [object Object]    ecmaVersion":2021
+ sourceType:module"
+  },
+plugins":vue"],
+  rules":[object Object]
+    no-console":off",
+  no-debugger:off",
+ vue/multi-word-component-names:off",
+  vue/no-unused-vars": "warn",
+vue/no-unused-components": "warn"
+  }
+} 

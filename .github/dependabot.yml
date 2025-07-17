@@ -1,0 +1,59 @@
+version: 2
+updates:
+  # Python依赖更新
+  - package-ecosystem: pip
+    directory: /backend
+    schedule:
+      interval: weekly
+      day: monday
+      time: 09:00
+    open-pull-requests-limit: 10  reviewers:
+      - zzyReal666  assignees:
+      - zzyReal666
+    commit-message:
+      prefix: pip
+      prefix-development: pip-dev
+      include: scope
+
+  # Node.js依赖更新
+  - package-ecosystem: npm
+    directory: /frontend
+    schedule:
+      interval: weekly
+      day: monday
+      time: 09:00
+    open-pull-requests-limit: 10  reviewers:
+      - zzyReal666  assignees:
+      - zzyReal666
+    commit-message:
+      prefix: npm
+      prefix-development: npm-dev
+      include: scope
+
+  # GitHub Actions更新
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: 09:00
+    open-pull-requests-limit:5  reviewers:
+      - zzyReal666  assignees:
+      - zzyReal666
+    commit-message:
+      prefix: github-actions
+      include: scope
+
+  # Docker依赖更新
+  - package-ecosystem: docker
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: 09:00
+    open-pull-requests-limit:5  reviewers:
+      - zzyReal666  assignees:
+      - zzyReal666
+    commit-message:
+      prefix: docker
+      include: scope 

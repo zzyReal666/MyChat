@@ -1,0 +1,82 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*
+jobs:
+  release:
+    name: 创建发布
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0          
+      - name: 设置Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.10          
+      - name: 设置Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20          
+      - name: 安装Python依赖
+        run: |
+          cd backend
+          pip install -r requirements.txt
+          
+      - name: 安装Node.js依赖
+        run: |
+          cd frontend
+          npm ci
+          
+      - name: 运行测试
+        run: |
+          cd backend
+          pytest tests/ -v
+          cd ../frontend
+          npm run build
+          
+      - name: 构建Docker镜像
+        run: |
+          docker build -t mychat-backend:${{ github.ref_name }} ./backend
+          docker build -t mychat-frontend:${{ github.ref_name }} ./frontend
+          
+      - name: 创建发布
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: |
+            ## 新版本发布
+            
+            ### 主要功能
+            - 功能1
+            - 功能2
+            - 功能3
+            
+            ### 修复
+            - 修复1
+            - 修复2
+            
+            ### 技术改进
+            - 改进1
+            - 改进2
+            
+            ### 安装说明
+            ```bash
+            # 后端
+            cd backend
+            pip install -r requirements.txt
+            uvicorn app.core.main:app --reload
+            
+            # 前端
+            cd frontend
+            npm install
+            npm run dev
+            ```
+          draft: false
+          prerelease: false
