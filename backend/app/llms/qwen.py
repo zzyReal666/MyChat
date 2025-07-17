@@ -2,8 +2,9 @@
 Qwen 模型适配器。
 """
 
-from app.llms.base import BaseLLM
 from typing import Optional
+
+from app.llms.base import BaseLLM
 
 
 class QwenAdapter(BaseLLM):

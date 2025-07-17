@@ -4,11 +4,12 @@ FastAPI 主程序入口。
 - 适合企业级扩展。
 """
 
+from contextlib import asynccontextmanager
+
+from app.api.chat import router as chat_router
+from app.db.init_db import create_tables, init_postgres
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.db.init_db import init_postgres, create_tables
-from app.api.chat import router as chat_router
-from contextlib import asynccontextmanager
 
 
 @asynccontextmanager

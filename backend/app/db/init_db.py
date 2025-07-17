@@ -3,22 +3,24 @@
 - 提供Postgres、MongoDB、Milvus的连接初始化方法。
 """
 
+from app.core.config import settings
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-from pymongo import MongoClient
-from pymilvus import connections
+from sqlalchemy.orm import declarative_base, sessionmaker
 
-# Postgres连接
+Base = declarative_base()
+
 engine = None
 SessionLocal = None
 
 
 def init_postgres():
-    """初始化Postgres数据库连接"""
+    """
+    初始化Postgres数据库连接
+    """
     global engine, SessionLocal
     engine = create_engine(settings.POSTGRES_URI, pool_pre_ping=True)
     SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-    print("[DB] Postgres已连接")
+    print(f"[DB] Postgres已连接: {settings.POSTGRES_URI}")
 
 
 def create_tables():

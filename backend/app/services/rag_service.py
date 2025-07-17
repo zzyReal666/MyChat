@@ -1,9 +1,10 @@
 import os
+
+from langchain.chains import RetrievalQA
+from langchain.schema import Document
 from langchain_community.embeddings import DashScopeEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain_openai import ChatOpenAI
-from langchain.chains import RetrievalQA
-from langchain.schema import Document
 from pydantic import SecretStr
 
 # 1. 加载向量化模型
