@@ -21,26 +21,6 @@ def init_postgres():
     print("[DB] Postgres已连接")
 
 
-# MongoDB连接
-mongo_client = None
-
-
-def init_mongo():
-    """初始化MongoDB连接"""
-    global mongo_client
-    mongo_client = MongoClient(settings.MONGO_URI)
-    print("[DB] MongoDB已连接")
-
-
-# Milvus连接
-
-
-def init_milvus():
-    """初始化Milvus连接"""
-    connections.connect(host=settings.MILVUS_HOST, port=settings.MILVUS_PORT)
-    print("[DB] Milvus已连接")
-
-
 def create_tables():
     """
     创建所有ORM模型对应的数据库表（类似Java的Hibernate自动建表）

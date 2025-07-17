@@ -10,6 +10,7 @@ from app.db.init_db import init_postgres, create_tables
 from app.api.chat import router as chat_router
 from contextlib import asynccontextmanager
 
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     init_postgres()
@@ -21,6 +22,7 @@ async def lifespan(app: FastAPI):
     yield
     # 可在这里添加关闭时的清理逻辑
 
+
 app = FastAPI(title="MyChat 企业级RAG平台", version="1.0.0", lifespan=lifespan)
 
 app.add_middleware(
@@ -31,4 +33,4 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(chat_router, prefix="/api") 
+app.include_router(chat_router, prefix="/api")
