@@ -2,7 +2,7 @@
 Llama 模型适配器。
 """
 
-from .base import BaseLLM
+from app.llms.base import BaseLLM
 from typing import Optional
 
 

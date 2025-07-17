@@ -7,8 +7,6 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from pymongo import MongoClient
 from pymilvus import connections
-from app.core.config import settings
-from app.models.user import Base  # 导入ORM基类
 
 # Postgres连接
 engine = None
@@ -47,7 +45,6 @@ def create_tables():
     """
     创建所有ORM模型对应的数据库表（类似Java的Hibernate自动建表）
     """
-    global engine
     if engine is not None:
         Base.metadata.create_all(bind=engine)
         print("[DB] 数据库表已创建")

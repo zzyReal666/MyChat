@@ -18,7 +18,6 @@ vector_db = FAISS.from_documents(documents, embeddings)
 
 # 4. 加载大模型（阿里百炼OpenAI兼容接口）
 
-import os
 
 key = os.getenv("DASHSCOPE_API_KEY")
 # print(os.getenv("DASHSCOPE_API_KEY"))
