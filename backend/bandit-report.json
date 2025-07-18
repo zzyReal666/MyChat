@@ -1,8 +1,21 @@
 {
   "errors": [],
-  "generated_at": "2025-07-17T02:51:33Z",
+  "generated_at": "2025-07-17T04:11:05Z",
   "metrics": {
-    "./app/api/__init__.py": {
+    "_totals": {
+      "CONFIDENCE.HIGH": 0,
+      "CONFIDENCE.LOW": 0,
+      "CONFIDENCE.MEDIUM": 0,
+      "CONFIDENCE.UNDEFINED": 0,
+      "SEVERITY.HIGH": 0,
+      "SEVERITY.LOW": 0,
+      "SEVERITY.MEDIUM": 0,
+      "SEVERITY.UNDEFINED": 0,
+      "loc": 185,
+      "nosec": 0,
+      "skipped_tests": 0
+    },
+    "backend/app/api/__init__.py": {
       "CONFIDENCE.HIGH": 0,
       "CONFIDENCE.LOW": 0,
       "CONFIDENCE.MEDIUM": 0,
@@ -15,7 +28,7 @@
       "nosec": 0,
       "skipped_tests": 0
     },
-    "./app/api/chat.py": {
+    "backend/app/api/chat.py": {
       "CONFIDENCE.HIGH": 0,
       "CONFIDENCE.LOW": 0,
       "CONFIDENCE.MEDIUM": 0,
@@ -28,7 +41,7 @@
       "nosec": 0,
       "skipped_tests": 0
     },
-    "./app/api/user.py": {
+    "backend/app/core/config.py": {
       "CONFIDENCE.HIGH": 0,
       "CONFIDENCE.LOW": 0,
       "CONFIDENCE.MEDIUM": 0,
@@ -37,11 +50,11 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 30,
+      "loc": 16,
       "nosec": 0,
       "skipped_tests": 0
     },
-    "./app/core/config.py": {
+    "backend/app/db/init_db.py": {
       "CONFIDENCE.HIGH": 0,
       "CONFIDENCE.LOW": 0,
       "CONFIDENCE.MEDIUM": 0,
@@ -50,37 +63,11 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 14,
+      "loc": 27,
       "nosec": 0,
       "skipped_tests": 0
     },
-    "./app/core/main.py": {
-      "CONFIDENCE.HIGH": 0,
-      "CONFIDENCE.LOW": 0,
-      "CONFIDENCE.MEDIUM": 0,
-      "CONFIDENCE.UNDEFINED": 0,
-      "SEVERITY.HIGH": 0,
-      "SEVERITY.LOW": 0,
-      "SEVERITY.MEDIUM": 0,
-      "SEVERITY.UNDEFINED": 0,
-      "loc": 44,
-      "nosec": 0,
-      "skipped_tests": 0
-    },
-    "./app/db/init_db.py": {
-      "CONFIDENCE.HIGH": 0,
-      "CONFIDENCE.LOW": 0,
-      "CONFIDENCE.MEDIUM": 0,
-      "CONFIDENCE.UNDEFINED": 0,
-      "SEVERITY.HIGH": 0,
-      "SEVERITY.LOW": 0,
-      "SEVERITY.MEDIUM": 0,
-      "SEVERITY.UNDEFINED": 0,
-      "loc": 38,
-      "nosec": 0,
-      "skipped_tests": 0
-    },
-    "./app/llms/base.py": {
+    "backend/app/llms/base.py": {
       "CONFIDENCE.HIGH": 0,
       "CONFIDENCE.LOW": 0,
       "CONFIDENCE.MEDIUM": 0,
@@ -93,7 +80,7 @@
       "nosec": 0,
       "skipped_tests": 0
     },
-    "./app/llms/chatglm.py": {
+    "backend/app/llms/chatglm.py": {
       "CONFIDENCE.HIGH": 0,
       "CONFIDENCE.LOW": 0,
       "CONFIDENCE.MEDIUM": 0,
@@ -106,7 +93,7 @@
       "nosec": 0,
       "skipped_tests": 0
     },
-    "./app/llms/llama.py": {
+    "backend/app/llms/llama.py": {
       "CONFIDENCE.HIGH": 0,
       "CONFIDENCE.LOW": 0,
       "CONFIDENCE.MEDIUM": 0,
@@ -119,7 +106,7 @@
       "nosec": 0,
       "skipped_tests": 0
     },
-    "./app/llms/qwen.py": {
+    "backend/app/llms/qwen.py": {
       "CONFIDENCE.HIGH": 0,
       "CONFIDENCE.LOW": 0,
       "CONFIDENCE.MEDIUM": 0,
@@ -132,7 +119,7 @@
       "nosec": 0,
       "skipped_tests": 0
     },
-    "./app/main.py": {
+    "backend/app/main.py": {
       "CONFIDENCE.HIGH": 0,
       "CONFIDENCE.LOW": 0,
       "CONFIDENCE.MEDIUM": 0,
@@ -141,11 +128,11 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 8,
+      "loc": 28,
       "nosec": 0,
       "skipped_tests": 0
     },
-    "./app/models/user.py": {
+    "backend/app/models/user.py": {
       "CONFIDENCE.HIGH": 0,
       "CONFIDENCE.LOW": 0,
       "CONFIDENCE.MEDIUM": 0,
@@ -154,11 +141,11 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 25,
+      "loc": 16,
       "nosec": 0,
       "skipped_tests": 0
     },
-    "./app/services/__init__.py": {
+    "backend/app/services/__init__.py": {
       "CONFIDENCE.HIGH": 0,
       "CONFIDENCE.LOW": 0,
       "CONFIDENCE.MEDIUM": 0,
@@ -171,7 +158,7 @@
       "nosec": 0,
       "skipped_tests": 0
     },
-    "./app/services/rag_service.py": {
+    "backend/app/services/rag_service.py": {
       "CONFIDENCE.HIGH": 0,
       "CONFIDENCE.LOW": 0,
       "CONFIDENCE.MEDIUM": 0,
@@ -180,110 +167,10 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 39,
-      "nosec": 0,
-      "skipped_tests": 0
-    },
-    "./app/services/user_service.py": {
-      "CONFIDENCE.HIGH": 0,
-      "CONFIDENCE.LOW": 0,
-      "CONFIDENCE.MEDIUM": 0,
-      "CONFIDENCE.UNDEFINED": 0,
-      "SEVERITY.HIGH": 0,
-      "SEVERITY.LOW": 0,
-      "SEVERITY.MEDIUM": 0,
-      "SEVERITY.UNDEFINED": 0,
-      "loc": 25,
-      "nosec": 0,
-      "skipped_tests": 0
-    },
-    "./tests/test_user.py": {
-      "CONFIDENCE.HIGH": 3,
-      "CONFIDENCE.LOW": 0,
-      "CONFIDENCE.MEDIUM": 0,
-      "CONFIDENCE.UNDEFINED": 0,
-      "SEVERITY.HIGH": 0,
-      "SEVERITY.LOW": 3,
-      "SEVERITY.MEDIUM": 0,
-      "SEVERITY.UNDEFINED": 0,
-      "loc": 22,
-      "nosec": 0,
-      "skipped_tests": 0
-    },
-    "_totals": {
-      "CONFIDENCE.HIGH": 3,
-      "CONFIDENCE.LOW": 0,
-      "CONFIDENCE.MEDIUM": 0,
-      "CONFIDENCE.UNDEFINED": 0,
-      "SEVERITY.HIGH": 0,
-      "SEVERITY.LOW": 3,
-      "SEVERITY.MEDIUM": 0,
-      "SEVERITY.UNDEFINED": 0,
-      "loc": 312,
+      "loc": 31,
       "nosec": 0,
       "skipped_tests": 0
     }
   },
-  "results": [
-    {
-      "code": "21     response = client.post(\"/api/user/users/\", json=payload)\n22     assert response.status_code == 201  # \u65ad\u8a00HTTP\u72b6\u6001\u7801\n23     data = response.json()\n",
-      "col_offset": 4,
-      "end_col_offset": 38,
-      "filename": "./tests/test_user.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 22,
-      "line_range": [
-        22
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "23     data = response.json()\n24     assert data[\"username\"] == payload[\"username\"]  # \u65ad\u8a00\u7528\u6237\u540d\u4e00\u81f4\n25     assert data[\"email\"] == payload[\"email\"]        # \u65ad\u8a00\u90ae\u7bb1\u4e00\u81f4 \n",
-      "col_offset": 4,
-      "end_col_offset": 50,
-      "filename": "./tests/test_user.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 24,
-      "line_range": [
-        24
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "24     assert data[\"username\"] == payload[\"username\"]  # \u65ad\u8a00\u7528\u6237\u540d\u4e00\u81f4\n25     assert data[\"email\"] == payload[\"email\"]        # \u65ad\u8a00\u90ae\u7bb1\u4e00\u81f4 \n",
-      "col_offset": 4,
-      "end_col_offset": 44,
-      "filename": "./tests/test_user.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 25,
-      "line_range": [
-        25
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    }
-  ]
+  "results": []
 }
