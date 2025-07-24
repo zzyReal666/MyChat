@@ -1,6 +1,7 @@
 # flake8: noqa: E501
-from app.db.init_db import Base
 from sqlalchemy import Column, DateTime, Integer, String, func
+
+from app.db.init_db import Base
 
 
 class User(Base):

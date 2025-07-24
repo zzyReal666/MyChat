@@ -3,7 +3,7 @@ name: Release
 on:
   push:
     tags:
-      - 'v*
+      - 'v*'
 jobs:
   release:
     name: 创建发布
@@ -20,7 +20,7 @@ jobs:
       - name: 设置Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20          
+          node-version: '20'
       - name: 安装Python依赖
         run: |
           cd backend
