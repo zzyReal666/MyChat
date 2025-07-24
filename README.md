@@ -151,3 +151,26 @@ npm run dev
 ## CI/CD 简要说明
 
 本项目已集成企业级 CI/CD 流水线，自动完成测试、构建、部署等流程。详细配置与说明请见 [`.github/workflows/README.md`](.github/workflows/README.md)。
+
+## 🚀 快速开始
+
+### 使用开发工作流脚本
+
+我们提供了自动化脚本来简化开发流程：
+
+```bash
+# 开始新功能开发
+./scripts/dev-workflow.sh start-feature your-feature-name
+
+# 提交代码
+./scripts/dev-workflow.sh commit feat "添加新功能"
+
+# 完成功能开发
+./scripts/dev-workflow.sh finish-feature
+```
+
+更多详细信息请查看 [CONTRIBUTING.md](CONTRIBUTING.md)。
+
+---
+
+*最后更新：2024年7月24日*
