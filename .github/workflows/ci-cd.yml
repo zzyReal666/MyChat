@@ -3,9 +3,9 @@ name: MyChat CI/CD Pipeline
 # 触发条件：推送到main分支或创建PR时
 on:
   push:
-    branches:  main, develop ]
+    branches: [ main, develop ]
   pull_request:
-    branches:  main, develop ]
+    branches: [ main, develop ]
   # 手动触发
   workflow_dispatch:
 
@@ -20,7 +20,7 @@ jobs:
   code-quality:
     name: 代码质量检查
     runs-on: ubuntu-latest
-    timeout-minutes:10 
+    timeout-minutes: 10
     steps:
       - name: 检出代码
         uses: actions/checkout@v4     
@@ -31,7 +31,8 @@ jobs:
       - name: 设置Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20          cache: 'npm'
+          node-version: '20'
+          cache: 'npm'
           cache-dependency-path: frontend/package-lock.json
           
       - name: 安装Python依赖
@@ -53,18 +54,19 @@ jobs:
       - name: Python代码风格检查
         run: |
           cd backend
-          flake8 . --count --select=E9,F63,F7,F82show-source --statistics
-          flake8-count --exit-zero --max-complexity=10 --max-line-length=88 --statistics
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+          flake8 . --count --exit-zero --max-complexity=10 --max-line-length=88 --statistics
           
       - name: Python类型检查
         run: |
-          cd frontend
+          cd backend
           mypy . --ignore-missing-imports
           
       - name: ESLint检查
         run: |
           cd frontend
-          npm run lint || echo "ESLint not configured, skipping...          
+          npm run lint || echo "ESLint not configured, skipping..."
+          
       - name: 代码覆盖率检查
         run: |
           cd backend
@@ -81,7 +83,7 @@ jobs:
   security-scan:
     name: 安全扫描
     runs-on: ubuntu-latest
-    timeout-minutes:15 
+    timeout-minutes: 15
     steps:
       - name: 检出代码
         uses: actions/checkout@v4     
@@ -92,7 +94,7 @@ jobs:
       - name: 设置Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20          
+          node-version: '20'
       - name: 安装安全扫描工具
         run: |
           cd backend
@@ -136,8 +138,9 @@ jobs:
           --health-cmd pg_isready
           --health-interval 10s
           --health-timeout 5s
-          --health-retries5  ports:
-          - 5432432        
+          --health-retries 5
+        ports:
+          - 5432:5432        
     steps:
       - name: 检出代码
         uses: actions/checkout@v4     
@@ -149,9 +152,9 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.cache/pip
-          key: ${[object Object]runner.os }}-pip-${{ hashFiles('backend/requirements.txt') }}
+          key: ${{ runner.os }}-pip-${{ hashFiles('backend/requirements.txt') }}
           restore-keys: |
-            ${[object Object]runner.os }}-pip-
+            ${{ runner.os }}-pip-
             
       - name: 安装后端依赖
         run: |
@@ -178,14 +181,15 @@ jobs:
   test-frontend:
     name: 前端测试
     runs-on: ubuntu-latest
-    timeout-minutes:15 
+    timeout-minutes: 15
     steps:
       - name: 检出代码
         uses: actions/checkout@v4     
       - name: 设置Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20          cache: 'npm'
+          node-version: '20'
+          cache: 'npm'
           cache-dependency-path: frontend/package-lock.json
           
       - name: 安装前端依赖
@@ -196,7 +200,7 @@ jobs:
       - name: 运行前端测试
         run: |
           cd frontend
-          npm test || echo "No tests configured          
+          npm test || echo "No tests configured"
       - name: 构建前端
         run: |
           cd frontend
@@ -214,7 +218,7 @@ jobs:
     name: 构建Docker镜像
     runs-on: ubuntu-latest
     needs: [test-backend, test-frontend]
-    timeout-minutes:30 
+    timeout-minutes: 30
     steps:
       - name: 检出代码
         uses: actions/checkout@v4     
@@ -231,7 +235,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${[object Object] env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
             type=ref,event=branch
             type=ref,event=pr
@@ -264,32 +268,32 @@ jobs:
     name: 部署到测试环境
     runs-on: ubuntu-latest
     needs: [build-images]
-    if: github.ref == 'refs/heads/develop
+    if: github.ref == 'refs/heads/develop'
     environment: staging
-    timeout-minutes:20 
+    timeout-minutes: 20
     steps:
       - name: 检出代码
         uses: actions/checkout@v4     
       - name: 设置Kubectl
         uses: azure/setup-kubectl@v3
         with:
-          version: 'latest          
+          version: 'latest'
       - name: 配置Kubernetes上下文
         run: |
-          echo${{ secrets.KUBE_CONFIG_STAGING }}" | base64 > kubeconfig.yaml
+          echo "${{ secrets.KUBE_CONFIG_STAGING }}" | base64 -d > kubeconfig.yaml
           export KUBECONFIG=kubeconfig.yaml
           
       - name: 部署到Kubernetes
         run: |
           export KUBECONFIG=kubeconfig.yaml
           kubectl apply -f deploy/k8s/
-          kubectl set image deployment/backend-deployment backend=${[object Object] env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
-          kubectl set image deployment/frontend-deployment frontend=${[object Object] env.REGISTRY }}/${[object Object]env.IMAGE_NAME }}-frontend:${{ github.sha }}
+          kubectl set image deployment/backend-deployment backend=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+          kubectl set image deployment/frontend-deployment frontend=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-frontend:${{ github.sha }}
           
       - name: 等待部署完成
         run: |
           export KUBECONFIG=kubeconfig.yaml
-          kubectl rollout status deployment/backend-deployment --timeout=300
+          kubectl rollout status deployment/backend-deployment --timeout=300s
           kubectl rollout status deployment/frontend-deployment --timeout=300s
 
   # ==================== 部署到生产环境 ====================
@@ -297,39 +301,40 @@ jobs:
     name: 部署到生产环境
     runs-on: ubuntu-latest
     needs: [build-images]
-    if: github.ref == refs/heads/main
+    if: github.ref == 'refs/heads/main'
     environment: production
-    timeout-minutes:30 
+    timeout-minutes: 30
     steps:
       - name: 检出代码
         uses: actions/checkout@v4     
       - name: 设置Kubectl
         uses: azure/setup-kubectl@v3
         with:
-          version: 'latest          
+          version: 'latest'
       - name: 配置Kubernetes上下文
         run: |
-          echo${{ secrets.KUBE_CONFIG_PROD }}" | base64 > kubeconfig.yaml
+          echo "${{ secrets.KUBE_CONFIG_PROD }}" | base64 -d > kubeconfig.yaml
           export KUBECONFIG=kubeconfig.yaml
           
       - name: 部署到Kubernetes
         run: |
           export KUBECONFIG=kubeconfig.yaml
           kubectl apply -f deploy/k8s/
-          kubectl set image deployment/backend-deployment backend=${[object Object] env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
-          kubectl set image deployment/frontend-deployment frontend=${[object Object] env.REGISTRY }}/${[object Object]env.IMAGE_NAME }}-frontend:${{ github.sha }}
+          kubectl set image deployment/backend-deployment backend=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+          kubectl set image deployment/frontend-deployment frontend=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-frontend:${{ github.sha }}
           
       - name: 等待部署完成
         run: |
           export KUBECONFIG=kubeconfig.yaml
-          kubectl rollout status deployment/backend-deployment --timeout=300
+          kubectl rollout status deployment/backend-deployment --timeout=300s
           kubectl rollout status deployment/frontend-deployment --timeout=300s
           
       - name: 健康检查
         run: |
           export KUBECONFIG=kubeconfig.yaml
           # 等待服务启动
-          sleep30          # 检查后端健康状态
+          sleep 30
+          # 检查后端健康状态
           kubectl get pods -l app=backend
           # 检查前端健康状态
           kubectl get pods -l app=frontend
@@ -343,7 +348,7 @@ jobs:
     
     steps:
       - name: 发送Slack通知
-        uses: 8398a7n-slack@v3
+        uses: 8398a7/action-slack@v3
         with:
           status: ${{ job.status }}
           channel: '#deployments'
@@ -352,5 +357,6 @@ jobs:
         
       - name: 发送邮件通知
         run: |
-          echo "部署状态: ${{ needs.deploy-staging.result || needs.deploy-production.result }}          # 这里可以集成邮件发送服务
+          echo "部署状态: ${{ needs.deploy-staging.result || needs.deploy-production.result }}"
+          # 这里可以集成邮件发送服务
         if: always() 
