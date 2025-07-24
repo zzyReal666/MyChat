@@ -3,9 +3,10 @@
 - 提供Postgres、MongoDB、Milvus的连接初始化方法。
 """
 
-from app.core.config import settings
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
+
+from app.core.config import settings
 
 Base = declarative_base()
 

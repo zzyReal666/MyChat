@@ -6,10 +6,11 @@ FastAPI 主程序入口。
 
 from contextlib import asynccontextmanager
 
-from app.api.chat import router as chat_router
-from app.db.init_db import create_tables, init_postgres
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+
+from app.api.chat import router as chat_router
+from app.db.init_db import create_tables, init_postgres
 
 
 @asynccontextmanager
