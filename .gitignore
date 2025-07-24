@@ -10,3 +10,24 @@ target/
 venv/
 *.log
 
+# 自动生成的报告文件
+*-report.json
+*-report.html
+*-report.xml
+safety-report.json
+bandit-report.json
+
+# 测试覆盖率报告
+.coverage
+htmlcov/
+.pytest_cache/
+
+# 环境变量文件
+.env
+.env.local
+.env.*.local
+
+# 临时文件
+*.tmp
+*.temp
+
