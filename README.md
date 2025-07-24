@@ -32,7 +32,7 @@ MyChat 是一个面向大模型、RAG（检索增强生成）、Agent 应用开�
 
 ---
 
-## 目录结构（详细说明，适合新手）
+## 目录结构
 
 ```text
 MyChat/
@@ -67,13 +67,23 @@ MyChat/
 │
 ├── scripts/                  # 各类开发、部署、数据处理脚本，便于自动化运维
 │
-├── doc/                      # 项目文档、学习笔记、FAQ等
+├── doc/                      # 项目文档、学习笔记等
+│   ├── FAQ.md               # 常见问题解答
+│   ├── CHANGELOG.md         # 版本变更日志
+│   └── 大模型学习记录/        # 学习笔记和实验记录
 │
 ├── .github/                  # GitHub Actions、Issue模板、CI/CD配置
+│   ├── workflows/            # CI/CD 工作流配置
+│   ├── ISSUE_TEMPLATE/       # Issue 模板
+│   └── pull_request_template.md  # PR 模板
 │
+├── CONTRIBUTING.md           # 贡献指南
+├── LICENSE                   # 开源许可证
+├── Makefile                  # 项目构建和部署脚本
 └── README.md                 # 项目说明（入口文档）
 ```
 
+---
 
 ## 快速开始
 
@@ -115,44 +125,7 @@ npm run dev
 
 ---
 
-## 常见问题
-
-- Node.js 推荐 20+ 版本，建议使用 nvm 管理
-- 数据库默认使用 Postgres，需先启动数据库服务
-- 更多问题请见 [FAQ](doc/FAQ.md) 或提交 Issue
-
----
-
-## 贡献指南
-
-欢迎任何形式的贡献！请阅读 [CONTRIBUTING.md](doc/CONTRIBUTING.md) 了解详细流程。
-
-- Fork 本仓库并新建分支
-- 提交 PR 前请确保通过所有测试和 lint 检查
-- PR 模板见 `.github/pull_request_template.md`
-
----
-
-## 社区与交流
-
-- 作者：张忠源（Zhang Zhongyuan）
-- 邮箱：zhangzhongyuan@example.com
-- GitHub: [zzyReal666](https://github.com/zzyReal666)
-- 欢迎提 Issue、PR 或加入讨论！
-
----
-
-## License
-
-[MIT License](LICENSE)
-
----
-
-## CI/CD 简要说明
-
-本项目已集成企业级 CI/CD 流水线，自动完成测试、构建、部署等流程。详细配置与说明请见 [`.github/workflows/README.md`](.github/workflows/README.md)。
-
-## 🚀 快速开始
+## 开发工具
 
 ### 使用开发工作流脚本
 
@@ -169,8 +142,68 @@ npm run dev
 ./scripts/dev-workflow.sh finish-feature
 ```
 
-更多详细信息请查看 [CONTRIBUTING.md](CONTRIBUTING.md)。
+### 代码质量检查
+
+```bash
+# 运行所有检查
+make check
+
+# 仅运行 flake8 检查
+make lint
+
+# 运行测试
+make test
+```
 
 ---
 
-*最后更新：2024年7月24日*
+## 文档导航
+
+- 📖 [快速开始](#快速开始) - 项目启动指南
+- ❓ [常见问题](doc/FAQ.md) - 问题解答
+- 📝 [贡献指南](CONTRIBUTING.md) - 如何参与项目
+- 📋 [变更日志](doc/CHANGELOG.md) - 版本更新历史
+- 🚀 [CI/CD 说明](.github/workflows/README.md) - 自动化流程
+
+---
+
+## 常见问题
+
+- Node.js 推荐 20+ 版本，建议使用 nvm 管理
+- 数据库默认使用 Postgres，需先启动数据库服务
+- 更多问题请查看 [FAQ](doc/FAQ.md) 或提交 [Issue](https://github.com/zzyReal666/MyChat/issues)
+
+---
+
+## 贡献指南
+
+欢迎任何形式的贡献！请阅读 [CONTRIBUTING.md](CONTRIBUTING.md) 了解详细流程。
+
+- Fork 本仓库并新建分支
+- 提交 PR 前请确保通过所有测试和 lint 检查
+- PR 模板见 [.github/pull_request_template.md](.github/pull_request_template.md)
+
+---
+
+## 社区与交流
+
+- 作者：张忠源（Zhang Zhongyuan）
+- 邮箱：zhangzhongyuan@example.com
+- GitHub: [zzyReal666](https://github.com/zzyReal666)
+- 欢迎提 Issue、PR 或加入讨论！
+
+---
+
+## CI/CD 说明
+
+本项目已集成企业级 CI/CD 流水线，自动完成测试、构建、部署等流程。详细配置与说明请见 [.github/workflows/README.md](.github/workflows/README.md)。
+
+---
+
+## License
+
+[MIT License](LICENSE)
+
+---
+
+*最后更新：2024年12月*
