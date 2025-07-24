@@ -62,6 +62,102 @@ git push origin feature/your-feature-name
 - 删除功能分支
 - 定期将develop合并到main进行发布
 
+### 分支同步策略
+
+#### 为什么需要同步？
+
+- **保持代码一致性**：确保develop和main分支的代码状态一致
+- **避免冲突**：减少合并时的冲突
+- **版本管理**：便于版本发布和回滚
+- **团队协作**：确保所有开发者使用相同的代码基础
+
+#### 同步时机和方向
+
+```
+发布新版本时：
+develop → main (通过release分支或直接合并)
+
+热修复后：
+main → develop (将修复同步回开发分支)
+
+定期检查：
+监控分支差异，及时同步
+```
+
+#### 使用同步脚本
+
+我们提供了自动化脚本来管理分支同步：
+
+```bash
+# 检查分支状态
+./scripts/sync-branches.sh status
+
+# 发布新版本（develop → main）
+./scripts/sync-branches.sh release
+
+# 热修复后同步（main → develop）
+./scripts/sync-branches.sh sync-main
+
+# 定期同步检查
+./scripts/sync-branches.sh periodic
+
+# 创建发布标签
+./scripts/sync-branches.sh tag v1.0.0
+```
+
+#### 同步最佳实践
+
+1. **定期同步**：
+   - 每周至少检查一次分支状态
+   - 当develop领先main超过50个提交时，考虑发布新版本
+
+2. **发布流程**：
+   ```bash
+   # 1. 检查develop分支状态
+   ./scripts/sync-branches.sh status
+   
+   # 2. 发布新版本
+   ./scripts/sync-branches.sh release
+   
+   # 3. 创建版本标签
+   ./scripts/sync-branches.sh tag v1.0.0
+   ```
+
+3. **热修复流程**：
+   ```bash
+   # 1. 从main创建热修复分支
+   ./scripts/dev-workflow.sh start-hotfix critical-fix
+   
+   # 2. 修复问题并提交
+   ./scripts/dev-workflow.sh commit fix "修复关键问题"
+   
+   # 3. 完成热修复
+   ./scripts/dev-workflow.sh finish-hotfix
+   
+   # 4. 创建PR到main分支
+   # 5. 合并后同步到develop
+   ./scripts/sync-branches.sh sync-main
+   ```
+
+4. **自动化检查**：
+   - 可以设置GitHub Actions定期运行同步检查
+   - 当检测到分支差异过大时自动通知
+
+#### 分支保护规则
+
+建议在GitHub上设置以下分支保护规则：
+
+**Main分支保护**：
+- 要求Pull Request审查
+- 要求状态检查通过
+- 禁止直接推送
+- 要求线性历史
+
+**Develop分支保护**：
+- 要求Pull Request审查
+- 要求状态检查通过
+- 允许管理员直接推送
+
 ### 提交信息规范
 
 使用 [Conventional Commits](https://www.conventionalcommits.org/) 规范：
